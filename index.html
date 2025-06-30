@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hack.coworking - Креативное пространство в Казани</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <nav>
+                <div class="logo">hack.coworking</div>
+                <ul>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#locations">Адреса</a></li>
+                    <li><a href="#pricing">Тарифы</a></li>
+                </ul>
+            </nav>
+            <div class="hero-content">
+                <h1>Твоё рабочее пространство для IT и креатива в Казани</h1>
+                <p>Место, где идеи превращаются в код, а проекты — в реальность.</p>
+                <a href="#pricing" class="cta-button">Выбрать тариф</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>О hack.coworking</h2>
+            <div class="about-content">
+                <p>Мы создали не просто коворкинг, а комьюнити для тех, кто горит своим делом. <strong>hack.coworking</strong> — это современное и технологичное пространство в сердце Казани для программистов, дизайнеров, стартаперов и всех, кто ценит комфорт, скорость и вдохновляющую атмосферу. У нас есть всё для продуктивной работы и отдыха: от высокоскоростного Wi-Fi до безлимитного кофе.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="locations" class="locations-section">
+        <div class="container">
+            <h2>Наши адреса</h2>
+            <div class="locations-gallery">
+                <div class="location-card">
+                    <img src="images/3.jpg" alt="Фото офиса на Дубравной">
+                    <div class="location-info">
+                        <h3>Офис на Дубравной</h3>
+                        <p>улица Рихарда Зорге, 102</p>
+                        <p>Просторный опен-спейс с видом на центр города. Идеально для команд и фрилансеров.</p>
+                    </div>
+                </div>
+                <div class="location-card">
+                    <img src="images/2.jpg" alt="Фото офиса на Проспекте Победы">
+                    <div class="location-info">
+                        <h3>Офис на Проспекте Победы</h3>
+                        <p>Проспект Победы, 139к2</p>
+                        <p>Современный коворкинг в Казани.</p>
+                    </div>
+                </div>
+                <div class="location-card">
+                    <img src="images/1.jpg" alt="Фото офиса у Корстона">
+                    <div class="location-info">
+                        <h3>Офис у Корстона</h3>
+                        <p>улица Николая Ершова, 1А</p>
+                        <p>Креативное пространство для работы и отдыха.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <h2>Тарифы и бронирование</h2>
+            <div class="pricing-and-form">
+                <div class="pricing-cards" id="tariff-cards">
+                    <div class="price-card" data-tariff="День (900 ₽)">
+                        <h3>День</h3>
+                        <p class="price">900 ₽</p>
+                        <ul>
+                            <li>✓ Рабочее место</li>
+                            <li>✓ Wi-Fi и принтер</li>
+                            <li>✓ Чай и кофе</li>
+                        </ul>
+                    </div>
+                    <div class="price-card" data-tariff="Месяц (15 000 ₽)">
+                        <h3>Месяц</h3>
+                        <p class="price">15 000 ₽</p>
+                        <ul>
+                            <li>✓ Доступ 24/7</li>
+                            <li>✓ Фиксированное место</li>
+                            <li>✓ Всё из тарифа "День"</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="booking-form">
+                    <h3>Оставить заявку</h3>
+                    <form id="contact-form">
+                        <input type="hidden" name="tariff" id="tariff-input" required>
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="tel" name="phone" placeholder="Телефон" required>
+                        <textarea name="message" placeholder="Комментарий (необязательно)"></textarea>
+                        <button type="submit">Забронировать</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 hack.coworking. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+    // Выбор тарифа по клику на карточку
+    const cards = document.querySelectorAll('.price-card');
+    const tariffInput = document.getElementById('tariff-input');
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            cards.forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            tariffInput.value = card.getAttribute('data-tariff');
+        });
+    });
+    // Если пользователь не выбрал тариф, подсветить карточки при отправке
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', function(e) {
+        if (!tariffInput.value) {
+            e.preventDefault();
+            cards.forEach(c => c.classList.add('shake'));
+            setTimeout(() => cards.forEach(c => c.classList.remove('shake')), 500);
+        }
+    });
+    </script>
+
+</body>
+</html> 
